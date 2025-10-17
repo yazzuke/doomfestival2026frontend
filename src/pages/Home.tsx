@@ -5,13 +5,14 @@ import { PreRegisterSection } from "../components/sections/PreRegisterSection";
 import { LineUpEventSection } from "../components/sections/LineUpDjSection";
 import { PriceEventSection } from "../components/sections/PriceEventSection";
 import { PhotosSection } from "../components/sections/PhotosSection";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getDJs } from "../services/djService";
 import type { DJ } from "../services/djService";
 
 export const Home = () => {
   const [doomLineup, setDoomLineup] = useState<DJ[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const fetchDJs = async () => {
@@ -26,6 +27,34 @@ export const Home = () => {
     };
 
     fetchDJs();
+  }, []);
+
+  useEffect(() => {
+    // Forzar reproducción del video en iOS
+    const playVideo = async () => {
+      if (videoRef.current) {
+        try {
+          await videoRef.current.play();
+        } catch (error) {
+          console.log('Error al reproducir video:', error);
+        }
+      }
+    };
+
+    playVideo();
+
+    // Intentar reproducir cuando la página sea visible
+    const handleVisibilityChange = () => {
+      if (!document.hidden && videoRef.current) {
+        videoRef.current.play().catch(e => console.log('Video play error:', e));
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   const scrollToRegister = () => {
@@ -46,19 +75,20 @@ export const Home = () => {
       <section className="relative h-screen w-full overflow-hidden">
         {/* Video Background */}
         <video
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
+          webkit-playsinline="true"
         >
           <source src={doom2} type="video/mp4" />
         </video>
 
         {/* Overlay oscuro */}
         <div className="absolute inset-0 bg-black/40" />
-
-      
 
         {/* Contenido */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-8">
@@ -133,4 +163,4 @@ export const Home = () => {
       <PhotosSection />
     </>
   );
-};    
+};
