@@ -3,7 +3,6 @@ import { doom2 } from "../assets";
 import { logofestival } from "../assets/index";
 import { PreRegisterSection } from "../components/sections/PreRegisterSection";
 import { LineUpEventSection } from "../components/sections/LineUpDjSection";
-import { Instagram, Youtube, Facebook, Music } from "lucide-react";
 import { PriceEventSection } from "../components/sections/PriceEventSection";
 import { PhotosSection } from "../components/sections/PhotosSection";
 import { useState, useEffect } from "react";
