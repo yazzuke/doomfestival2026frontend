@@ -1,5 +1,6 @@
 
 export { default as doom2 } from './videos/doom2.mp4';
+export { default as doom2mobile } from './videos/doom2mobile.mp4';
 export { default as doom8 } from './videos/doom8.mp4';
 export { default as logofestival } from './images/logofestival.png';
 export { default as doomfestival2024 } from './images/events/doomfestival2024.jpg';

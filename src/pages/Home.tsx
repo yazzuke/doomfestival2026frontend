@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { doom2 } from "../assets";
+import { doom2, doom2mobile } from "../assets";
 import { logofestival } from "../assets/index";
 import { PreRegisterSection } from "../components/sections/PreRegisterSection";
 import { LineUpEventSection } from "../components/sections/LineUpDjSection";
@@ -12,7 +12,20 @@ import type { DJ } from "../services/djService";
 export const Home = () => {
   const [doomLineup, setDoomLineup] = useState<DJ[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Detectar si es mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const fetchDJs = async () => {
@@ -30,10 +43,11 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Forzar reproducción del video en iOS
+    // Forzar reproducción del video
     const playVideo = async () => {
       if (videoRef.current) {
         try {
+          videoRef.current.load();
           await videoRef.current.play();
         } catch (error) {
           console.log('Error al reproducir video:', error);
@@ -41,9 +55,8 @@ export const Home = () => {
       }
     };
 
-    playVideo();
+    const timer = setTimeout(playVideo, 100);
 
-    // Intentar reproducir cuando la página sea visible
     const handleVisibilityChange = () => {
       if (!document.hidden && videoRef.current) {
         videoRef.current.play().catch(e => console.log('Video play error:', e));
@@ -53,9 +66,10 @@ export const Home = () => {
     document.addEventListener('visibilitychange', handleVisibilityChange);
     
     return () => {
+      clearTimeout(timer);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, []);
+  }, [isMobile]);
 
   const scrollToRegister = () => {
     document.getElementById("pre-register")?.scrollIntoView({
@@ -73,7 +87,7 @@ export const Home = () => {
     <>
       {/* Hero Section con video */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Video Background */}
+        {/* Video Background - Optimizado para mobile */}
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
@@ -84,7 +98,7 @@ export const Home = () => {
           preload="auto"
           webkit-playsinline="true"
         >
-          <source src={doom2} type="video/mp4" />
+          <source src={isMobile ? doom2mobile : doom2} type="video/mp4" />
         </video>
 
         {/* Overlay oscuro */}
