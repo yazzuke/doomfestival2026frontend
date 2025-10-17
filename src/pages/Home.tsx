@@ -43,31 +43,60 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Forzar reproducción del video
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Función para intentar reproducir el video
     const playVideo = async () => {
-      if (videoRef.current) {
-        try {
-          videoRef.current.load();
-          await videoRef.current.play();
-        } catch (error) {
-          console.log('Error al reproducir video:', error);
-        }
+      try {
+        await video.play();
+        console.log('Video playing');
+      } catch (error) {
+        console.log('Error playing video:', error);
+        // Reintentar después de un pequeño delay
+        setTimeout(() => {
+          video.play().catch(e => console.log('Retry failed:', e));
+        }, 1000);
       }
     };
 
-    const timer = setTimeout(playVideo, 100);
-
-    const handleVisibilityChange = () => {
-      if (!document.hidden && videoRef.current) {
-        videoRef.current.play().catch(e => console.log('Video play error:', e));
-      }
+    // Eventos para manejar el video
+    const handleLoadedData = () => {
+      console.log('Video loaded');
+      playVideo();
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+    const handleEnded = () => {
+      console.log('Video ended, restarting');
+      video.currentTime = 0;
+      playVideo();
+    };
+
+    const handleStalled = () => {
+      console.log('Video stalled, reloading');
+      video.load();
+      playVideo();
+    };
+
+    const handleSuspend = () => {
+      console.log('Video suspended');
+      playVideo();
+    };
+
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('ended', handleEnded);
+    video.addEventListener('stalled', handleStalled);
+    video.addEventListener('suspend', handleSuspend);
+
+    // Cargar el video
+    video.load();
+
+    // Cleanup
     return () => {
-      clearTimeout(timer);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('ended', handleEnded);
+      video.removeEventListener('stalled', handleStalled);
+      video.removeEventListener('suspend', handleSuspend);
     };
   }, [isMobile]);
 
@@ -87,7 +116,7 @@ export const Home = () => {
     <>
       {/* Hero Section con video */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Video Background - Optimizado para mobile */}
+        {/* Video Background - Optimizado para iOS */}
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
@@ -96,13 +125,11 @@ export const Home = () => {
           loop
           playsInline
           preload="auto"
-          webkit-playsinline="true"
-        >
-          <source src={isMobile ? doom2mobile : doom2} type="video/mp4" />
-        </video>
+          src={isMobile ? doom2mobile : doom2}
+        />
 
         {/* Overlay oscuro */}
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/40 z-[1]" />
 
         {/* Contenido */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-8">

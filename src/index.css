@@ -44,6 +44,13 @@
   }
 }
 
+.react-player video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+
 @keyframes glitch {
   0%, 100% { 
     text-shadow: -2px 0 #00ff41, 2px 0 #00ffff;
