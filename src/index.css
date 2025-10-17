@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-doom-black text-doom-white font-techno overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .btn-doom {
+    @apply px-6 py-3 bg-gradient-doom text-white font-semibold rounded-lg 
+           transition-all duration-300 hover:shadow-glow-green hover:scale-105
+           active:scale-95;
+  }
+  
+  .card-doom {
+    @apply bg-doom-dark/80 backdrop-blur-sm border border-doom-darker 
+           rounded-xl p-6 hover:border-doom-red/50 transition-all duration-300;
+  }
+  
+  .text-glitch {
+    animation: glitch 2s infinite;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-doom bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { 
+    text-shadow: -2px 0 #00ff41, 2px 0 #00ffff;
+  }
+  25% { 
+    text-shadow: 2px 0 #00ff41, -2px 0 #00ffff;
+  }
+  50% { 
+    text-shadow: -2px 0 #00ffff, 2px 0 #8b00ff;
+  }
+}
