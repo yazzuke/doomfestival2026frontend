@@ -10,7 +10,7 @@ export const WhatsAppButton = ({
 }) => {
   const handleWhatsAppClick = () => {
     const encodedMsg = encodeURIComponent(defaultMessage);
-    window.open(`https://wa.me/+12048082986?text=${encodedMsg}`, '_blank'); 
+    window.open(`https://wa.me/+573000000000?text=${encodedMsg}`, '_blank'); 
   };
 
   if (variant === "floating") {
