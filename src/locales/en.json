@@ -12,7 +12,6 @@
   },
   "nav": {
     "home": "Home",
-    "lineup": "Line Up",
     "tickets": "Tickets",
     "gallery": "Gallery"
   },
@@ -76,6 +75,65 @@
     "backstage": "BACKSTAGE",
     "soldOut": "Sold Out"
   },
+ "lineup": {
+    "allDjs": "ALL DJs LINE-UP",
+    "totalArtists": "{{count}} Artists",
+    "featuring": "Featuring",
+    "worldClass": "World-Class DJs",
+    "viewAll": "VIEW ALL"
+  },
   "loading": "Loading DJs...",
-  "noDjs": "No DJs available"
+  "noDjs": "No DJs available",
+  "pqr": {
+    "title": "FREQUENTLY ASKED QUESTIONS",
+    "subtitle": "Find answers to the most common questions",
+    "faqsTitle": "FAQs",
+    "contactTitle": "CONTACT US",
+    "faqs": {
+      "age": {
+        "question": "What is the minimum age to enter?",
+        "answer": "The minimum age to enter the event is 18 years old. You must present an original and valid ID at the entrance."
+      },
+      "time": {
+        "question": "What time does the event open?",
+        "answer": "Doors open at 8:00 PM. We recommend arriving early to avoid lines and enjoy the full experience from the beginning."
+      },
+      "reentry": {
+        "question": "Can I leave and re-enter?",
+        "answer": "Re-entry to the event is not allowed due to security policies. Once you leave the venue, you will not be able to re-enter."
+      },
+      "payment": {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept credit cards, debit cards, PSE, and cash at authorized points of sale. Online payments are processed securely."
+      },
+      "refund": {
+        "question": "Can I request a refund for my ticket?",
+        "answer": "Tickets are non-refundable. Only in case of event cancellation will a 100% refund of the amount paid be made."
+      },
+      "parking": {
+        "question": "Is parking available?",
+        "answer": "Yes, we have parking available near the venue. The cost is $20,000 COP and space is limited. We recommend arriving early."
+      }
+    },
+    "contact": {
+      "email": {
+        "title": "EMAIL"
+      },
+      "phone": {
+        "title": "PHONE"
+      },
+      "location": {
+        "title": "LOCATION"
+      },
+      "hours": {
+        "title": "HOURS",
+        "value": "Monday - Friday: 9AM - 6PM"
+      }
+    },
+    "needHelp": {
+      "title": "NEED MORE HELP?",
+      "description": "Our team is ready to answer all your questions. Send us a message and we'll respond as soon as possible.",
+      "button": "SEND MESSAGE"
+    }
+  }
 }

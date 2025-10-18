@@ -163,7 +163,7 @@ export const PreRegisterSection = () => {
                   }}
                   transition={{ duration: 0.3, repeat: Infinity }}
                 >
-                  {t('preRegister.title')}
+           
                 </motion.span>
               </span>
             </motion.h2>

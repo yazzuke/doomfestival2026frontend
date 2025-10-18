@@ -29,6 +29,12 @@ export const PhotosSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
+  const scrollToRegister = () => {
+    document.getElementById("pre-register")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   const galleryItems: GalleryItem[] = [
     {
       id: "1",
@@ -169,7 +175,7 @@ export const PhotosSection = () => {
                 }}
                 transition={{ duration: 0.3, repeat: Infinity }}
               >
-                {t('gallery.title')}
+            
               </motion.span>
             </span>
           </motion.h2>
@@ -345,21 +351,18 @@ export const PhotosSection = () => {
             {t('gallery.cta.text')}
           </motion.p>
           <motion.button
+            onClick={scrollToRegister}
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 0 30px rgba(132, 204, 22, 0.6)",
+              boxShadow: "0 0 40px rgba(132, 204, 22, 0.7)",
             }}
             whileTap={{ scale: 0.95 }}
-            className="font-rajdhani relative px-8 py-4 bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-black font-bold tracking-widest transition-all duration-300 border-2 border-[#84cc16] overflow-hidden group uppercase"
+            className="relative bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-black font-bold py-3 px-6 sm:py-4 sm:px-12 md:py-5 md:px-14 text-sm sm:text-base md:text-lg tracking-wider transition-all duration-300 border-[3px] border-[#84cc16] overflow-hidden group w-[90%] sm:w-auto max-w-xl mx-auto rounded-lg"
           >
-            <span className="relative z-10">{t('gallery.cta.button')}</span>
-            <motion.div
-              className="absolute inset-0 bg-white/20"
-              initial={{ scaleX: 0 }}
-              whileHover={{ scaleX: 1 }}
-              transition={{ duration: 0.3 }}
-              style={{ originX: 0 }}
-            />
+            <span className="font-rajdhani relative z-10 uppercase">
+              {t('gallery.cta.button')}
+            </span>
+            <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           </motion.button>
         </motion.div>
       </div>

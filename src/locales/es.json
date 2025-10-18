@@ -12,7 +12,6 @@
   },
   "nav": {
     "home": "Inicio",
-    "lineup": "Line Up",
     "tickets": "Entradas",
     "gallery": "Galería"
   },
@@ -76,6 +75,65 @@
     "backstage": "BACKSTAGE",
     "soldOut": "Agotado"
   },
+  "lineup": {
+    "allDjs": "TODOS LOS DJs",
+    "totalArtists": "{{count}} Artistas",
+    "featuring": "Presentando",
+    "worldClass": "DJs de Clase Mundial",
+    "viewAll": "VER TODOS"
+  },
   "loading": "Cargando DJs...",
-  "noDjs": "No hay DJs disponibles"
+  "noDjs": "No hay DJs disponibles",
+  "pqr": {
+    "title": "PREGUNTAS FRECUENTES",
+    "subtitle": "Encuentra respuestas a las preguntas más comunes",
+    "faqsTitle": "PREGUNTAS FRECUENTES",
+    "contactTitle": "CONTÁCTANOS",
+    "faqs": {
+      "age": {
+        "question": "¿Cuál es la edad mínima para entrar?",
+        "answer": "La edad mínima para ingresar al evento es de 18 años. Es obligatorio presentar documento de identidad original y vigente en la entrada."
+      },
+      "time": {
+        "question": "¿A qué hora abre el evento?",
+        "answer": "Las puertas abren a las 8:00 PM. Te recomendamos llegar temprano para evitar filas y disfrutar de toda la experiencia desde el inicio."
+      },
+      "reentry": {
+        "question": "¿Puedo salir y volver a entrar?",
+        "answer": "No está permitido el reingreso al evento por políticas de seguridad. Una vez que salgas del recinto, no podrás volver a ingresar."
+      },
+      "payment": {
+        "question": "¿Qué métodos de pago aceptan?",
+        "answer": "Aceptamos pagos con tarjetas de crédito, débito, PSE y efectivo en puntos de venta autorizados. Los pagos en línea son procesados de forma segura."
+      },
+      "refund": {
+        "question": "¿Puedo solicitar reembolso de mi entrada?",
+        "answer": "Las entradas no tienen reembolso. Solo en caso de cancelación del evento se realizará la devolución del 100% del valor pagado."
+      },
+      "parking": {
+        "question": "¿Hay parqueadero disponible?",
+        "answer": "Sí, contamos con parqueadero disponible cerca del venue. El costo es de $20.000 COP y el espacio es limitado. Se recomienda llegar temprano."
+      }
+    },
+    "contact": {
+      "email": {
+        "title": "EMAIL"
+      },
+      "phone": {
+        "title": "TELÉFONO"
+      },
+      "location": {
+        "title": "UBICACIÓN"
+      },
+      "hours": {
+        "title": "HORARIO",
+        "value": "Lunes - Viernes: 9AM - 6PM"
+      }
+    },
+    "needHelp": {
+      "title": "¿NECESITAS MÁS AYUDA?",
+      "description": "Nuestro equipo está listo para responder todas tus preguntas. Envíanos un mensaje y te responderemos lo antes posible.",
+      "button": "ENVIAR MENSAJE"
+    }
+  }
 }
