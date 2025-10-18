@@ -164,29 +164,29 @@ export const Home = () => {
             transition={{ duration: 1 }}
             className="text-center w-full"
           >
-            {/* Logo Grande - Más grande en mobile */}
+            {/* Logo Grande - MÁS GRANDE y mejor proporcionado */}
             <motion.img
               src={logofestival}
               alt={t('hero.title')}
-              className="w-full max-w-[400px] sm:max-w-lg md:max-w-3xl lg:max-w-5xl mx-auto mb-3 sm:mb-6 md:mb-10"
+              className="w-full max-w-[500px] sm:max-w-2xl md:max-w-4xl lg:max-w-6xl mx-auto mb-4 sm:mb-6 md:mb-8"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.2 }}
             />
 
-            {/* Fecha y Ubicación - En una sola línea en mobile */}
-            <h2 className="font-orbitron text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-[0.2em] sm:tracking-[0.5em] uppercase mb-4 sm:mb-8 md:mb-10">
+            {/* Fecha y Ubicación - Más pequeña */}
+            <h2 className="font-orbitron text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4 sm:mb-6 md:mb-8">
               {t('hero.date')}
             </h2>
 
-            {/* Contador Regresivo - Más compacto en mobile */}
+            {/* Contador Regresivo - MÁS PEQUEÑO */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="mb-6 sm:mb-10 md:mb-14 px-2"
+              className="mb-6 sm:mb-8 md:mb-10 px-2"
             >
-              <div className="flex justify-center gap-2 sm:gap-5 md:gap-7 lg:gap-10 mb-4">
+              <div className="flex justify-center gap-2 sm:gap-4 md:gap-5 lg:gap-6 mb-4">
                 {/* Días */}
                 <div className="flex flex-col items-center">
                   <motion.div
@@ -198,13 +198,13 @@ export const Home = () => {
                       ]
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-5 md:p-7 lg:p-8 min-w-[65px] sm:min-w-[100px] md:min-w-[130px] lg:min-w-[150px] backdrop-blur-sm"
+                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-5 lg:p-6 min-w-[65px] sm:min-w-[90px] md:min-w-[110px] lg:min-w-[120px] backdrop-blur-sm"
                   >
-                    <span className="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#84cc16] block leading-none">
+                    <span className="font-orbitron text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#84cc16] block leading-none">
                       {timeLeft.days}
                     </span>
                   </motion.div>
-                  <span className="font-rajdhani text-white text-xs sm:text-base md:text-lg lg:text-xl font-bold mt-1.5 sm:mt-3 tracking-wider sm:tracking-widest uppercase">
+                  <span className="font-rajdhani text-white text-xs sm:text-sm md:text-base lg:text-lg font-bold mt-1.5 sm:mt-2 tracking-wider sm:tracking-widest uppercase">
                     {t('hero.countdown.days')}
                   </span>
                 </div>
@@ -220,13 +220,13 @@ export const Home = () => {
                       ]
                     }}
                     transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
-                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-5 md:p-7 lg:p-8 min-w-[65px] sm:min-w-[100px] md:min-w-[130px] lg:min-w-[150px] backdrop-blur-sm"
+                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-5 lg:p-6 min-w-[65px] sm:min-w-[90px] md:min-w-[110px] lg:min-w-[120px] backdrop-blur-sm"
                   >
-                    <span className="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#84cc16] block leading-none">
+                    <span className="font-orbitron text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#84cc16] block leading-none">
                       {String(timeLeft.hours).padStart(2, '0')}
                     </span>
                   </motion.div>
-                  <span className="font-rajdhani text-white text-xs sm:text-base md:text-lg lg:text-xl font-bold mt-1.5 sm:mt-3 tracking-wider sm:tracking-widest uppercase">
+                  <span className="font-rajdhani text-white text-xs sm:text-sm md:text-base lg:text-lg font-bold mt-1.5 sm:mt-2 tracking-wider sm:tracking-widest uppercase">
                     {t('hero.countdown.hours')}
                   </span>
                 </div>
@@ -242,13 +242,13 @@ export const Home = () => {
                       ]
                     }}
                     transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
-                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-5 md:p-7 lg:p-8 min-w-[65px] sm:min-w-[100px] md:min-w-[130px] lg:min-w-[150px] backdrop-blur-sm"
+                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-5 lg:p-6 min-w-[65px] sm:min-w-[90px] md:min-w-[110px] lg:min-w-[120px] backdrop-blur-sm"
                   >
-                    <span className="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#84cc16] block leading-none">
+                    <span className="font-orbitron text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#84cc16] block leading-none">
                       {String(timeLeft.minutes).padStart(2, '0')}
                     </span>
                   </motion.div>
-                  <span className="font-rajdhani text-white text-xs sm:text-base md:text-lg lg:text-xl font-bold mt-1.5 sm:mt-3 tracking-wider sm:tracking-widest uppercase">
+                  <span className="font-rajdhani text-white text-xs sm:text-sm md:text-base lg:text-lg font-bold mt-1.5 sm:mt-2 tracking-wider sm:tracking-widest uppercase">
                     {t('hero.countdown.minutes')}
                   </span>
                 </div>
@@ -264,13 +264,13 @@ export const Home = () => {
                       ]
                     }}
                     transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-5 md:p-7 lg:p-8 min-w-[65px] sm:min-w-[100px] md:min-w-[130px] lg:min-w-[150px] backdrop-blur-sm"
+                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-5 lg:p-6 min-w-[65px] sm:min-w-[90px] md:min-w-[110px] lg:min-w-[120px] backdrop-blur-sm"
                   >
-                    <span className="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#84cc16] block leading-none">
+                    <span className="font-orbitron text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#84cc16] block leading-none">
                       {String(timeLeft.seconds).padStart(2, '0')}
                     </span>
                   </motion.div>
-                  <span className="font-rajdhani text-white text-xs sm:text-base md:text-lg lg:text-xl font-bold mt-1.5 sm:mt-3 tracking-wider sm:tracking-widest uppercase">
+                  <span className="font-rajdhani text-white text-xs sm:text-sm md:text-base lg:text-lg font-bold mt-1.5 sm:mt-2 tracking-wider sm:tracking-widest uppercase">
                     {t('hero.countdown.seconds')}
                   </span>
                 </div>
@@ -285,7 +285,7 @@ export const Home = () => {
                 boxShadow: "0 0 40px rgba(132, 204, 22, 0.7)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="relative bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-black font-bold py-3 px-6 sm:py-5 sm:px-14 md:py-6 md:px-16 text-sm sm:text-lg md:text-xl tracking-wider transition-all duration-300 border-[3px] border-[#84cc16] overflow-hidden group w-[90%] sm:w-auto max-w-xl mx-auto rounded-lg"
+              className="relative bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-black font-bold py-3 px-6 sm:py-4 sm:px-12 md:py-5 md:px-14 text-sm sm:text-base md:text-lg tracking-wider transition-all duration-300 border-[3px] border-[#84cc16] overflow-hidden group w-[90%] sm:w-auto max-w-xl mx-auto rounded-lg"
             >
               <span className="font-rajdhani relative z-10 uppercase">{t('hero.buyButton')}</span>
               <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
