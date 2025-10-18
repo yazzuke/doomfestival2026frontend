@@ -8,12 +8,42 @@ import { PhotosSection } from "../components/sections/PhotosSection";
 import { useState, useEffect, useRef } from "react";
 import { getDJs } from "../services/djService";
 import type { DJ } from "../services/djService";
+import { useTranslation } from 'react-i18next';
 
 export const Home = () => {
+  const { t } = useTranslation();
   const [doomLineup, setDoomLineup] = useState<DJ[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const eventDate = new Date('2026-04-04T00:00:00').getTime();
+      const now = new Date().getTime();
+      const difference = eventDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        });
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     // Detectar si es mobile
@@ -46,21 +76,18 @@ export const Home = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Función para intentar reproducir el video
     const playVideo = async () => {
       try {
         await video.play();
         console.log('Video playing');
       } catch (error) {
         console.log('Error playing video:', error);
-        // Reintentar después de un pequeño delay
         setTimeout(() => {
           video.play().catch(e => console.log('Retry failed:', e));
         }, 1000);
       }
     };
 
-    // Eventos para manejar el video
     const handleLoadedData = () => {
       console.log('Video loaded');
       playVideo();
@@ -88,10 +115,8 @@ export const Home = () => {
     video.addEventListener('stalled', handleStalled);
     video.addEventListener('suspend', handleSuspend);
 
-    // Cargar el video
     video.load();
 
-    // Cleanup
     return () => {
       video.removeEventListener('loadeddata', handleLoadedData);
       video.removeEventListener('ended', handleEnded);
@@ -116,7 +141,7 @@ export const Home = () => {
     <>
       {/* Hero Section con video */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Video Background - Optimizado para iOS */}
+        {/* Video Background */}
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
@@ -132,39 +157,137 @@ export const Home = () => {
         <div className="absolute inset-0 bg-black/40 z-[1]" />
 
         {/* Contenido */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center px-8">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-center"
+            className="text-center w-full"
           >
-            {/* Logo Grande */}
+            {/* Logo Grande - Más grande en mobile */}
             <motion.img
               src={logofestival}
-              alt="DOOM Festival 2026"
-              className="w-full max-w-4xl mx-auto mb-12"
+              alt={t('hero.title')}
+              className="w-full max-w-[400px] sm:max-w-lg md:max-w-3xl lg:max-w-5xl mx-auto mb-3 sm:mb-6 md:mb-10"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.2 }}
             />
 
-            {/* Fecha y Ubicación en una sola línea */}
-            <h2 className="font-orbitron text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-[0.5em] uppercase mb-12">
-              ABRIL 04 BOGOTÁ
+            {/* Fecha y Ubicación - En una sola línea en mobile */}
+            <h2 className="font-orbitron text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-[0.2em] sm:tracking-[0.5em] uppercase mb-4 sm:mb-8 md:mb-10">
+              {t('hero.date')}
             </h2>
 
-            {/* Botón de compra con estilo neo-rave */}
+            {/* Contador Regresivo - Más compacto en mobile */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="mb-6 sm:mb-10 md:mb-14 px-2"
+            >
+              <div className="flex justify-center gap-2 sm:gap-5 md:gap-7 lg:gap-10 mb-4">
+                {/* Días */}
+                <div className="flex flex-col items-center">
+                  <motion.div
+                    animate={{ 
+                      boxShadow: [
+                        "0 0 20px rgba(132, 204, 22, 0.4)",
+                        "0 0 40px rgba(132, 204, 22, 0.7)",
+                        "0 0 20px rgba(132, 204, 22, 0.4)"
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-5 md:p-7 lg:p-8 min-w-[65px] sm:min-w-[100px] md:min-w-[130px] lg:min-w-[150px] backdrop-blur-sm"
+                  >
+                    <span className="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#84cc16] block leading-none">
+                      {timeLeft.days}
+                    </span>
+                  </motion.div>
+                  <span className="font-rajdhani text-white text-xs sm:text-base md:text-lg lg:text-xl font-bold mt-1.5 sm:mt-3 tracking-wider sm:tracking-widest uppercase">
+                    {t('hero.countdown.days')}
+                  </span>
+                </div>
+
+                {/* Horas */}
+                <div className="flex flex-col items-center">
+                  <motion.div
+                    animate={{ 
+                      boxShadow: [
+                        "0 0 20px rgba(132, 204, 22, 0.4)",
+                        "0 0 40px rgba(132, 204, 22, 0.7)",
+                        "0 0 20px rgba(132, 204, 22, 0.4)"
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
+                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-5 md:p-7 lg:p-8 min-w-[65px] sm:min-w-[100px] md:min-w-[130px] lg:min-w-[150px] backdrop-blur-sm"
+                  >
+                    <span className="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#84cc16] block leading-none">
+                      {String(timeLeft.hours).padStart(2, '0')}
+                    </span>
+                  </motion.div>
+                  <span className="font-rajdhani text-white text-xs sm:text-base md:text-lg lg:text-xl font-bold mt-1.5 sm:mt-3 tracking-wider sm:tracking-widest uppercase">
+                    {t('hero.countdown.hours')}
+                  </span>
+                </div>
+
+                {/* Minutos */}
+                <div className="flex flex-col items-center">
+                  <motion.div
+                    animate={{ 
+                      boxShadow: [
+                        "0 0 20px rgba(132, 204, 22, 0.4)",
+                        "0 0 40px rgba(132, 204, 22, 0.7)",
+                        "0 0 20px rgba(132, 204, 22, 0.4)"
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
+                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-5 md:p-7 lg:p-8 min-w-[65px] sm:min-w-[100px] md:min-w-[130px] lg:min-w-[150px] backdrop-blur-sm"
+                  >
+                    <span className="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#84cc16] block leading-none">
+                      {String(timeLeft.minutes).padStart(2, '0')}
+                    </span>
+                  </motion.div>
+                  <span className="font-rajdhani text-white text-xs sm:text-base md:text-lg lg:text-xl font-bold mt-1.5 sm:mt-3 tracking-wider sm:tracking-widest uppercase">
+                    {t('hero.countdown.minutes')}
+                  </span>
+                </div>
+
+                {/* Segundos */}
+                <div className="flex flex-col items-center">
+                  <motion.div
+                    animate={{ 
+                      boxShadow: [
+                        "0 0 20px rgba(132, 204, 22, 0.4)",
+                        "0 0 40px rgba(132, 204, 22, 0.7)",
+                        "0 0 20px rgba(132, 204, 22, 0.4)"
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
+                    className="bg-black/70 border-[3px] border-[#84cc16] rounded-lg sm:rounded-xl p-2 sm:p-5 md:p-7 lg:p-8 min-w-[65px] sm:min-w-[100px] md:min-w-[130px] lg:min-w-[150px] backdrop-blur-sm"
+                  >
+                    <span className="font-orbitron text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#84cc16] block leading-none">
+                      {String(timeLeft.seconds).padStart(2, '0')}
+                    </span>
+                  </motion.div>
+                  <span className="font-rajdhani text-white text-xs sm:text-base md:text-lg lg:text-xl font-bold mt-1.5 sm:mt-3 tracking-wider sm:tracking-widest uppercase">
+                    {t('hero.countdown.seconds')}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Botón de compra */}
             <motion.button
               onClick={scrollToRegister}
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 0 30px rgba(132, 204, 22, 0.6)",
+                boxShadow: "0 0 40px rgba(132, 204, 22, 0.7)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="relative bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-black font-bold py-4 px-12 text-lg tracking-wider transition-all duration-300 border-2 border-[#84cc16] overflow-hidden group"
+              className="relative bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-black font-bold py-3 px-6 sm:py-5 sm:px-14 md:py-6 md:px-16 text-sm sm:text-lg md:text-xl tracking-wider transition-all duration-300 border-[3px] border-[#84cc16] overflow-hidden group w-[90%] sm:w-auto max-w-xl mx-auto rounded-lg"
             >
-              <span className="font-rajdhani relative z-10">COMPRA TUS ENTRADAS AQUÍ</span>
+              <span className="font-rajdhani relative z-10 uppercase">{t('hero.buyButton')}</span>
               <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </motion.button>
           </motion.div>
@@ -182,7 +305,7 @@ export const Home = () => {
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
             className="w-12 h-12 border-4 border-[#84cc16] border-t-transparent rounded-full"
           />
-          <p className="text-[#84cc16] text-xl ml-4">Cargando DJs...</p>
+          <p className="text-[#84cc16] text-xl ml-4">{t('loading')}</p>
         </div>
       ) : doomLineup.length > 0 ? (
         <LineUpEventSection
@@ -190,13 +313,13 @@ export const Home = () => {
         />
       ) : (
         <div className="flex justify-center items-center py-20 bg-black">
-          <p className="text-[#84cc16] text-xl">No hay DJs disponibles</p>
+          <p className="text-[#84cc16] text-xl">{t('noDjs')}</p>
         </div>
       )}
 
       {/* Sección de Precios */}
       <PriceEventSection 
-        prices={doomPrices}
+        prices={doomPrices} 
         isSoldOut={false}
       />
 

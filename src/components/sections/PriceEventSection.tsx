@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 interface PriceOption {
   type: "NORMAL" | "VIP" | "BACKSTAGE";
@@ -11,6 +12,8 @@ interface PriceEventSectionProps {
 }
 
 export const PriceEventSection = ({ prices, isSoldOut = false }: PriceEventSectionProps) => {
+  const { t } = useTranslation();
+
   const defaultPrices: PriceOption[] = [
     {
       type: "NORMAL",
@@ -33,9 +36,6 @@ export const PriceEventSection = ({ prices, isSoldOut = false }: PriceEventSecti
       {/* Fondo con grid futurista */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-90" />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxMzIsIDIwNCwgMjIsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIgLz48L3N2Zz4=')] opacity-20" />
-      
-
-
 
       <div className="max-w-7xl mx-auto px-8 relative z-10">
         <motion.div
@@ -58,7 +58,7 @@ export const PriceEventSection = ({ prices, isSoldOut = false }: PriceEventSecti
             transition={{ duration: 2, repeat: Infinity }}
           >
             <span className="font-orbitron relative inline-block">
-              PRECIOS
+              {t('prices.title')}
               <motion.span 
                 className="absolute inset-0 text-[#84cc16] opacity-70 blur-sm"
                 animate={{
@@ -67,7 +67,7 @@ export const PriceEventSection = ({ prices, isSoldOut = false }: PriceEventSecti
                 }}
                 transition={{ duration: 0.3, repeat: Infinity }}
               >
-               
+                {t('prices.title')}
               </motion.span>
             </span>
           </motion.h2>
@@ -81,8 +81,8 @@ export const PriceEventSection = ({ prices, isSoldOut = false }: PriceEventSecti
             className="text-center"
           >
             <div className="inline-block bg-red-900/40 border-2 border-red-500 px-12 py-6 backdrop-blur-sm">
-              <p className="text-5xl md:text-6xl font-black text-red-500 animate-pulse">
-                SOLD OUT
+              <p className="font-orbitron text-5xl md:text-6xl font-black text-red-500 animate-pulse">
+                {t('prices.soldOut')}
               </p>
             </div>
           </motion.div>
@@ -120,7 +120,7 @@ export const PriceEventSection = ({ prices, isSoldOut = false }: PriceEventSecti
                 {/* Tipo de ticket con efecto neón */}
                 <div className="text-center mb-8 relative z-10">
                   <motion.h3 
-                    className="text-2xl font-black text-[#84cc16] tracking-widest group-hover:text-white transition-colors duration-300"
+                    className="font-orbitron text-2xl font-black text-[#84cc16] tracking-widest group-hover:text-white transition-colors duration-300"
                     animate={{
                       textShadow: [
                         '0 0 5px rgba(132, 204, 22, 0.5)',
@@ -130,7 +130,7 @@ export const PriceEventSection = ({ prices, isSoldOut = false }: PriceEventSecti
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    {option.type}
+                    {t(`tickets.${option.type.toLowerCase()}`)}
                   </motion.h3>
                   {/* Línea decorativa bajo el título */}
                   <motion.div 
@@ -146,14 +146,14 @@ export const PriceEventSection = ({ prices, isSoldOut = false }: PriceEventSecti
                 {/* Precio con efecto cromado */}
                 <div className="text-center relative z-10">
                   <motion.div 
-                    className="text-6xl md:text-7xl font-black bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent group-hover:from-[#84cc16] group-hover:via-white group-hover:to-[#84cc16] transition-all duration-500 mb-3"
+                    className="font-orbitron text-6xl md:text-7xl font-black bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent group-hover:from-[#84cc16] group-hover:via-white group-hover:to-[#84cc16] transition-all duration-500 mb-3"
                     whileHover={{
                       textShadow: '0 0 30px rgba(132, 204, 22, 0.8)'
                     }}
                   >
                     {option.price}
                   </motion.div>
-                  <p className="text-[#84cc16]/80 text-lg font-bold tracking-widest">COP</p>
+                  <p className="font-rajdhani text-[#84cc16]/80 text-lg font-bold tracking-widest">{t('prices.currency')}</p>
                 </div>
 
                 {/* Bordes brillantes en hover */}

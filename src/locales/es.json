@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "title": "DOOM FESTIVAL 2026",
+    "date": "ABRIL 04 BOGOTÁ",
+    "buyButton": "COMPRA TUS ENTRADAS AQUÍ",
+    "countdown": {
+      "days": "DÍAS",
+      "hours": "HORAS",
+      "minutes": "MIN",
+      "seconds": "SEG"
+    }
+  },
+  "nav": {
+    "home": "Inicio",
+    "lineup": "Line Up",
+    "tickets": "Entradas",
+    "gallery": "Galería"
+  },
+  "preRegister": {
+    "title": "PRE-REGISTRO",
+    "subtitle": "Regístrate y sé el primero en obtener tus entradas",
+    "form": {
+      "fullName": "Nombre Completo",
+      "fullNamePlaceholder": "Tu nombre completo",
+      "email": "Correo Electrónico",
+      "emailPlaceholder": "tucorreo@ejemplo.com",
+      "emailWarning": "Debe ser el mismo que el de AllTickets",
+      "phone": "Teléfono",
+      "phonePlaceholder": "+57 300 123 4567",
+      "cedula": "Cédula",
+      "cedulaPlaceholder": "1234567890",
+      "terms": "Acepto los",
+      "termsLink": "términos y condiciones",
+      "termsText": "y autorizo el tratamiento de mis datos personales",
+      "submitButton": "Registrarme Ahora",
+      "submitting": "Registrando...",
+      "termsError": "Debes aceptar los términos y condiciones",
+      "legalText": "Al registrarte aceptas nuestros términos y condiciones y autorizas el tratamiento de tus datos personales"
+    },
+    "messages": {
+      "success": "¡Registro exitoso! Te contactaremos pronto.",
+      "error": "Error al registrarse. Por favor intenta nuevamente.",
+      "connectionError": "Error de conexión. Por favor verifica tu conexión e intenta nuevamente."
+    }
+  },
+  "prices": {
+    "title": "PRECIOS",
+    "soldOut": "AGOTADO",
+    "currency": "COP"
+  },
+  "gallery": {
+    "title": "GALERÍA",
+    "categories": {
+      "all": "TODOS",
+      "doom2025": "DOOM FESTIVAL 2025",
+      "doom2024": "DOOM FESTIVAL 2024"
+    },
+    "items": {
+      "doom2024": {
+        "title": "Doom Festival 2024",
+        "description": "Una noche épica con DJs Internacionales"
+      },
+      "doom2025": {
+        "title": "Doom Festival 2025",
+        "description": "La atmósfera única de DOOM"
+      }
+    },
+    "cta": {
+      "text": "¿LISTO PARA VIVIR LA EXPERIENCIA?",
+      "button": "ÚNETE AL PRÓXIMO EVENTO"
+    }
+  },
+  "tickets": {
+    "normal": "NORMAL",
+    "vip": "VIP",
+    "backstage": "BACKSTAGE",
+    "soldOut": "Agotado"
+  },
+  "loading": "Cargando DJs...",
+  "noDjs": "No hay DJs disponibles"
+}

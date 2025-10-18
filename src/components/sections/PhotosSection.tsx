@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { X, Play, Camera } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 import {
   doomparty,
   doomparty2,
@@ -18,104 +19,105 @@ interface GalleryItem {
   type: "photo" | "video";
   src: string;
   thumbnail: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   category: "doom2025" | "doom2024";
 }
 
-const galleryItems: GalleryItem[] = [
-  {
-    id: "1",
-    type: "photo",
-    src: doomparty,
-    thumbnail: doomparty,
-    title: "Doom Festival 2024",
-    description: "Una noche épica con Djs Internacionales",
-    category: "doom2024",
-  },
-  {
-    id: "2",
-    type: "photo",
-    src: doomparty2,
-    thumbnail: doomparty2,
-    title: "Doom Festival 2024",
-    description: "Una noche épica con Djs Internacionales",
-    category: "doom2024",
-  },
-  {
-    id: "3",
-    type: "photo",
-    src: doomparty3,
-    thumbnail: doomparty3,
-      title: "Doom Festival 2024",
-    description: "Una noche épica con Djs Internacionales",
-    category: "doom2024",
-  },
-  {
-    id: "4",
-    type: "photo",
-    src: doomparty4,
-    thumbnail: doomparty4,
-    title: "Doom Festival 2024",
-    description: "Una noche épica con Djs Internacionales",
-    category: "doom2024",
-  },
-  {
-    id: "5",
-    type: "photo",
-    src: domfestival,
-    thumbnail: domfestival,
-    title: "Doom Festival 2025",
-    description: "La comunidad techno de Bogotá",
-    category: "doom2025",
-  },
-  {
-    id: "6",
-    type: "photo",
-    src: domfestival1,
-    thumbnail: domfestival1,
-    title: "Doom Festival 2025",
-    description: "La atmósfera única de DOOM",
-    category: "doom2025",
-  },
-  {
-    id: "7",
-    type: "photo",
-    src: domfestival2,
-    thumbnail: domfestival2,
-      title: "Doom Festival 2025",
-    description: "La atmósfera única de DOOM",
-    category: "doom2025",
-  },
-  {
-    id: "8",
-    type: "photo",
-    src: domfestival3,
-    thumbnail: domfestival3,
-    title: "Doom Festival 2025",
-    description: "La atmósfera única de DOOM",
-    category: "doom2025",
-  },
-  {
-    id: "9",
-    type: "photo",
-    src: domfestival4,
-    thumbnail: domfestival4,
-    title: "Doom Festival 2025",
-    description: "La atmósfera única de DOOM",
-    category: "doom2025",
-  },
-];
-
-const categories = [
-  { id: "all", name: "TODOS", icon: Camera },
-  { id: "doom2025", name: "DOOM FESTIVAL 2025", icon: Camera },
-  { id: "doom2024", name: "DOOM FESTIVAL 2024", icon: Camera },
-];
-
 export const PhotosSection = () => {
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+
+  const galleryItems: GalleryItem[] = [
+    {
+      id: "1",
+      type: "photo",
+      src: doomparty,
+      thumbnail: doomparty,
+      titleKey: "gallery.items.doom2024.title",
+      descriptionKey: "gallery.items.doom2024.description",
+      category: "doom2024",
+    },
+    {
+      id: "2",
+      type: "photo",
+      src: doomparty2,
+      thumbnail: doomparty2,
+      titleKey: "gallery.items.doom2024.title",
+      descriptionKey: "gallery.items.doom2024.description",
+      category: "doom2024",
+    },
+    {
+      id: "3",
+      type: "photo",
+      src: doomparty3,
+      thumbnail: doomparty3,
+      titleKey: "gallery.items.doom2024.title",
+      descriptionKey: "gallery.items.doom2024.description",
+      category: "doom2024",
+    },
+    {
+      id: "4",
+      type: "photo",
+      src: doomparty4,
+      thumbnail: doomparty4,
+      titleKey: "gallery.items.doom2024.title",
+      descriptionKey: "gallery.items.doom2024.description",
+      category: "doom2024",
+    },
+    {
+      id: "5",
+      type: "photo",
+      src: domfestival,
+      thumbnail: domfestival,
+      titleKey: "gallery.items.doom2025.title",
+      descriptionKey: "gallery.items.doom2025.description",
+      category: "doom2025",
+    },
+    {
+      id: "6",
+      type: "photo",
+      src: domfestival1,
+      thumbnail: domfestival1,
+      titleKey: "gallery.items.doom2025.title",
+      descriptionKey: "gallery.items.doom2025.description",
+      category: "doom2025",
+    },
+    {
+      id: "7",
+      type: "photo",
+      src: domfestival2,
+      thumbnail: domfestival2,
+      titleKey: "gallery.items.doom2025.title",
+      descriptionKey: "gallery.items.doom2025.description",
+      category: "doom2025",
+    },
+    {
+      id: "8",
+      type: "photo",
+      src: domfestival3,
+      thumbnail: domfestival3,
+      titleKey: "gallery.items.doom2025.title",
+      descriptionKey: "gallery.items.doom2025.description",
+      category: "doom2025",
+    },
+    {
+      id: "9",
+      type: "photo",
+      src: domfestival4,
+      thumbnail: domfestival4,
+      titleKey: "gallery.items.doom2025.title",
+      descriptionKey: "gallery.items.doom2025.description",
+      category: "doom2025",
+    },
+  ];
+
+  const categories = [
+    { id: "all", nameKey: "gallery.categories.all", icon: Camera },
+    { id: "doom2025", nameKey: "gallery.categories.doom2025", icon: Camera },
+    { id: "doom2024", nameKey: "gallery.categories.doom2024", icon: Camera },
+  ];
 
   const filteredItems =
     selectedCategory === "all"
@@ -134,9 +136,7 @@ export const PhotosSection = () => {
     <section id="galeria" className="relative py-20 bg-black overflow-hidden">
       {/* Fondo con grid futurista */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-90" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxMzIsIDIwNCwgMjIsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIgLz48L3N2Zz4=')] opacity-20" />
-
-    
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxMzIsIDIwNCwgMjIsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIgLz48L3N2Zz4=')] opacity-20" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -160,7 +160,7 @@ export const PhotosSection = () => {
             transition={{ duration: 2, repeat: Infinity }}
           >
             <span className="font-orbitron relative inline-block">
-              GALERÍA
+              {t('gallery.title')}
               <motion.span
                 className="absolute inset-0 text-[#84cc16] opacity-70 blur-sm"
                 animate={{
@@ -169,7 +169,7 @@ export const PhotosSection = () => {
                 }}
                 transition={{ duration: 0.3, repeat: Infinity }}
               >
-             
+                {t('gallery.title')}
               </motion.span>
             </span>
           </motion.h2>
@@ -182,8 +182,6 @@ export const PhotosSection = () => {
             }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-
-  
         </motion.div>
 
         {/* Category Filter */}
@@ -209,7 +207,7 @@ export const PhotosSection = () => {
                 }`}
               >
                 <Icon size={16} />
-                {category.name}
+                {t(category.nameKey)}
                 {selectedCategory === category.id && (
                   <motion.div
                     className="absolute inset-0 bg-white/20"
@@ -247,7 +245,7 @@ export const PhotosSection = () => {
               {/* Image */}
               <img
                 src={item.thumbnail}
-                alt={item.title}
+                alt={t(item.titleKey)}
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 filter group-hover:brightness-110"
               />
 
@@ -286,10 +284,10 @@ export const PhotosSection = () => {
                       textShadow: "0 0 20px rgba(132, 204, 22, 0.8)",
                     }}
                   >
-                    {item.title}
+                    {t(item.titleKey)}
                   </motion.h3>
                   <p className="font-rajdhani text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {item.description}
+                    {t(item.descriptionKey)}
                   </p>
                 </div>
               </div>
@@ -340,11 +338,11 @@ export const PhotosSection = () => {
           viewport={{ once: true }}
         >
           <motion.p
-            className="text-[#84cc16]/80 text-sm mb-6 tracking-widest"
+            className="font-rajdhani text-[#84cc16]/80 text-sm mb-6 tracking-widest uppercase"
             animate={{ opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            ¿LISTO PARA VIVIR LA EXPERIENCIA?
+            {t('gallery.cta.text')}
           </motion.p>
           <motion.button
             whileHover={{
@@ -352,9 +350,9 @@ export const PhotosSection = () => {
               boxShadow: "0 0 30px rgba(132, 204, 22, 0.6)",
             }}
             whileTap={{ scale: 0.95 }}
-            className="relative px-8 py-4 bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-black font-bold tracking-widest transition-all duration-300 border-2 border-[#84cc16] overflow-hidden group"
+            className="font-rajdhani relative px-8 py-4 bg-gradient-to-r from-[#84cc16] to-[#65a30d] text-black font-bold tracking-widest transition-all duration-300 border-2 border-[#84cc16] overflow-hidden group uppercase"
           >
-            <span className="relative z-10">ÚNETE AL PRÓXIMO EVENTO</span>
+            <span className="relative z-10">{t('gallery.cta.button')}</span>
             <motion.div
               className="absolute inset-0 bg-white/20"
               initial={{ scaleX: 0 }}
@@ -396,7 +394,7 @@ export const PhotosSection = () => {
             <div className="aspect-video relative overflow-hidden">
               <img
                 src={selectedItem.src}
-                alt={selectedItem.title}
+                alt={t(selectedItem.titleKey)}
                 className="w-full h-full object-cover"
               />
               {/* Efecto de glow en la imagen */}
@@ -406,7 +404,7 @@ export const PhotosSection = () => {
             {/* Modal info */}
             <div className="p-6 border-t-2 border-[#84cc16]/30 bg-black/60">
               <motion.h3
-                className="text-white font-bold text-xl mb-2 tracking-wide"
+                className="font-rajdhani text-white font-bold text-xl mb-2 tracking-wide"
                 animate={{
                   textShadow: [
                     "0 0 5px rgba(132, 204, 22, 0.5)",
@@ -416,10 +414,10 @@ export const PhotosSection = () => {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                {selectedItem.title}
+                {t(selectedItem.titleKey)}
               </motion.h3>
-              <p className="text-[#84cc16]/80 text-sm">
-                {selectedItem.description}
+              <p className="font-rajdhani text-[#84cc16]/80 text-sm">
+                {t(selectedItem.descriptionKey)}
               </p>
             </div>
           </motion.div>

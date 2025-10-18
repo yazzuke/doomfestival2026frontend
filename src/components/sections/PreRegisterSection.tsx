@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Check, AlertCircle } from 'lucide-react';
 import { doom8 } from '../../assets';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   nombre: string;
@@ -29,6 +30,8 @@ interface ApiResponse {
 }
 
 export const PreRegisterSection = () => {
+  const { t } = useTranslation();
+  
   const [formData, setFormData] = useState<FormData>({
     nombre: '',
     correo: '',
@@ -52,7 +55,7 @@ export const PreRegisterSection = () => {
     if (!formData.terms_accepted) {
       setSubmitStatus({
         type: 'error',
-        message: 'Debes aceptar los términos y condiciones'
+        message: t('preRegister.form.termsError')
       });
       return;
     }
@@ -80,7 +83,7 @@ export const PreRegisterSection = () => {
       if (data.success) {
         setSubmitStatus({
           type: 'success',
-          message: data.message
+          message: data.message || t('preRegister.messages.success')
         });
         
         // Limpiar formulario
@@ -94,14 +97,14 @@ export const PreRegisterSection = () => {
       } else {
         setSubmitStatus({
           type: 'error',
-          message: data.error || 'Error al registrarse. Por favor intenta nuevamente.'
+          message: data.error || t('preRegister.messages.error')
         });
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus({
         type: 'error',
-        message: 'Error de conexión. Por favor verifica tu conexión e intenta nuevamente.'
+        message: t('preRegister.messages.connectionError')
       });
     } finally {
       setIsSubmitting(false);
@@ -129,8 +132,6 @@ export const PreRegisterSection = () => {
         <source src={doom8} type="video/mp4" />
       </video>
 
- 
-
       <div className="relative z-20 max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -152,7 +153,7 @@ export const PreRegisterSection = () => {
               transition={{ duration: 2, repeat: Infinity }}
             >
               <span className="font-orbitron relative inline-block text-6xl">
-                PRE-REGISTRO
+                {t('preRegister.title')}
                 <motion.span 
                   className="absolute inset-0 text-[#9ec54b] opacity-70 blur-sm"
                   animate={{
@@ -162,11 +163,10 @@ export const PreRegisterSection = () => {
                   }}
                   transition={{ duration: 0.3, repeat: Infinity }}
                 >
-           
+                  {t('preRegister.title')}
                 </motion.span>
               </span>
             </motion.h2>
-       
           </div>
 
           {/* Mensaje de estado */}
@@ -210,7 +210,7 @@ export const PreRegisterSection = () => {
               }}
             />
 
-            {/* Efecto de brillo en las esquinas - colores del festival */}
+            {/* Efecto de brillo en las esquinas */}
             <motion.div 
               className="absolute top-0 left-0 w-32 h-32 bg-[#9ec54b]/30 blur-3xl"
               animate={{
@@ -231,7 +231,7 @@ export const PreRegisterSection = () => {
             {/* Campo Nombre */}
             <div className="relative group">
               <label className="font-rajdhani block text-[#9ec54b] text-sm font-bold mb-2 tracking-wider uppercase">
-                Nombre Completo
+                {t('preRegister.form.fullName')}
               </label>
               <input
                 type="text"
@@ -241,14 +241,14 @@ export const PreRegisterSection = () => {
                 required
                 disabled={isSubmitting}
                 className="font-rajdhani w-full bg-[#0a0f0a]/90 border-2 border-[#3a4a3a] focus:border-[#9ec54b] text-white px-4 py-3 transition-all duration-300 focus:outline-none focus:shadow-[0_0_20px_rgba(158,197,75,0.3)] group-hover:border-[#9ec54b]/50 disabled:opacity-50"
-                placeholder="Tu nombre completo"
+                placeholder={t('preRegister.form.fullNamePlaceholder')}
               />
             </div>
 
             {/* Campo Correo */}
             <div className="relative group">
               <label className="font-rajdhani block text-[#9ec54b] text-sm font-bold mb-2 tracking-wider uppercase">
-                Correo Electrónico
+                {t('preRegister.form.email')}
               </label>
               <input
                 type="email"
@@ -258,17 +258,17 @@ export const PreRegisterSection = () => {
                 required
                 disabled={isSubmitting}
                 className="font-rajdhani w-full bg-[#0a0f0a]/90 border-2 border-[#3a4a3a] focus:border-[#9ec54b] text-white px-4 py-3 transition-all duration-300 focus:outline-none focus:shadow-[0_0_20px_rgba(158,197,75,0.3)] group-hover:border-[#9ec54b]/50 disabled:opacity-50"
-                placeholder="tucorreo@ejemplo.com"
+                placeholder={t('preRegister.form.emailPlaceholder')}
               />
               <p className="font-rajdhani text-yellow-400 text-xs mt-1 font-bold flex items-center gap-1">
-                <span className="font-rajdhani text-yellow-500">⚠️</span> Debe ser el mismo que el de AllTickets
+                <span className="font-rajdhani text-yellow-500">⚠️</span> {t('preRegister.form.emailWarning')}
               </p>
             </div>
 
             {/* Campo Teléfono */}
             <div className="relative group">
               <label className="font-rajdhani block text-[#9ec54b] text-sm font-bold mb-2 tracking-wider uppercase">
-                Teléfono
+                {t('preRegister.form.phone')}
               </label>
               <input
                 type="tel"
@@ -278,14 +278,14 @@ export const PreRegisterSection = () => {
                 required
                 disabled={isSubmitting}
                 className="font-rajdhani w-full bg-[#0a0f0a]/90 border-2 border-[#3a4a3a] focus:border-[#9ec54b] text-white px-4 py-3 transition-all duration-300 focus:outline-none focus:shadow-[0_0_20px_rgba(158,197,75,0.3)] group-hover:border-[#9ec54b]/50 disabled:opacity-50"
-                placeholder="+57 300 123 4567"
+                placeholder={t('preRegister.form.phonePlaceholder')}
               />
             </div>
 
             {/* Campo Cédula */}
             <div className="relative group">
               <label className="font-rajdhani block text-[#9ec54b] text-sm font-bold mb-2 tracking-wider uppercase">
-                Cédula
+                {t('preRegister.form.cedula')}
               </label>
               <input
                 type="text"
@@ -295,7 +295,7 @@ export const PreRegisterSection = () => {
                 required
                 disabled={isSubmitting}
                 className="font-rajdhani w-full bg-[#0a0f0a]/90 border-2 border-[#3a4a3a] focus:border-[#9ec54b] text-white px-4 py-3 transition-all duration-300 focus:outline-none focus:shadow-[0_0_20px_rgba(158,197,75,0.3)] group-hover:border-[#9ec54b]/50 disabled:opacity-50"
-                placeholder="1234567890"
+                placeholder={t('preRegister.form.cedulaPlaceholder')}
               />
             </div>
 
@@ -309,16 +309,16 @@ export const PreRegisterSection = () => {
                 disabled={isSubmitting}
                 className="mt-1 w-5 h-5 bg-[#0a0f0a] border-2 border-[#3a4a3a] checked:bg-[#9ec54b] checked:border-[#9ec54b] focus:outline-none focus:ring-2 focus:ring-[#9ec54b] transition-all duration-300 disabled:opacity-50 accent-[#9ec54b]"
               />
-              <label className=" font-rajdhani text-gray-300 text-sm">
-                Acepto los{' '}
+              <label className="font-rajdhani text-gray-300 text-sm">
+                {t('preRegister.form.terms')}{' '}
                 <a href="#" className="font-rajdhani text-[#9ec54b] hover:text-[#c8dd7c] hover:underline font-bold">
-                  términos y condiciones
+                  {t('preRegister.form.termsLink')}
                 </a>
-                {' '}y autorizo el tratamiento de mis datos personales
+                {' '}{t('preRegister.form.termsText')}
               </label>
             </div>
 
-            {/* Botón Submit - colores del festival */}
+            {/* Botón Submit */}
             <motion.button
               type="submit"
               disabled={isSubmitting}
@@ -337,10 +337,10 @@ export const PreRegisterSection = () => {
                       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       className="inline-block w-5 h-5 border-2 border-black border-t-transparent rounded-full"
                     />
-                    Registrando...
+                    {t('preRegister.form.submitting')}
                   </span>
                 ) : (
-                  'Registrarme Ahora'
+                  t('preRegister.form.submitButton')
                 )}
               </span>
               {!isSubmitting && (
@@ -357,7 +357,7 @@ export const PreRegisterSection = () => {
 
           {/* Texto legal */}
           <p className="font-rajdhani text-white font-bold text-xs text-center mt-6 tracking-wide">
-            Al registrarte aceptas nuestros términos y condiciones y autorizas el tratamiento de tus datos personales
+            {t('preRegister.form.legalText')}
           </p>
         </motion.div>
       </div>

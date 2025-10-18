@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 
 import { Footer } from '../components/common/Footerv2';
+import { ChangeLanguage } from "../components/common/ChangeLenguage";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -15,6 +16,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         {children}
       </main>
       <Footer />
+            <ChangeLanguage />
     </div>
   );
 };

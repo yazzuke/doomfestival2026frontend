@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "title": "DOOM FESTIVAL 2026",
+    "date": "APRIL 04 BOGOTÁ",
+    "buyButton": "BUY YOUR TICKETS HERE",
+    "countdown": {
+      "days": "DAYS",
+      "hours": "HOURS",
+      "minutes": "MIN",
+      "seconds": "SEC"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "lineup": "Line Up",
+    "tickets": "Tickets",
+    "gallery": "Gallery"
+  },
+  "preRegister": {
+    "title": "PRE-REGISTER",
+    "subtitle": "Register and be the first to get your tickets",
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "youremail@example.com",
+      "emailWarning": "Must be the same as your AllTickets account",
+      "phone": "Phone",
+      "phonePlaceholder": "+57 300 123 4567",
+      "cedula": "ID Number",
+      "cedulaPlaceholder": "1234567890",
+      "terms": "I accept the",
+      "termsLink": "terms and conditions",
+      "termsText": "and authorize the processing of my personal data",
+      "submitButton": "Register Now",
+      "submitting": "Registering...",
+      "termsError": "You must accept the terms and conditions",
+      "legalText": "By registering you accept our terms and conditions and authorize the processing of your personal data"
+    },
+    "messages": {
+      "success": "Registration successful! We'll contact you soon.",
+      "error": "Registration error. Please try again.",
+      "connectionError": "Connection error. Please check your connection and try again."
+    }
+  },
+  "prices": {
+    "title": "PRICES",
+    "soldOut": "SOLD OUT",
+    "currency": "COP"
+  },
+  "gallery": {
+    "title": "GALLERY",
+    "categories": {
+      "all": "ALL",
+      "doom2025": "DOOM FESTIVAL 2025",
+      "doom2024": "DOOM FESTIVAL 2024"
+    },
+    "items": {
+      "doom2024": {
+        "title": "Doom Festival 2024",
+        "description": "An epic night with International DJs"
+      },
+      "doom2025": {
+        "title": "Doom Festival 2025",
+        "description": "The unique atmosphere of DOOM"
+      }
+    },
+    "cta": {
+      "text": "READY TO LIVE THE EXPERIENCE?",
+      "button": "JOIN THE NEXT EVENT"
+    }
+  },
+  "tickets": {
+    "normal": "NORMAL",
+    "vip": "VIP",
+    "backstage": "BACKSTAGE",
+    "soldOut": "Sold Out"
+  },
+  "loading": "Loading DJs...",
+  "noDjs": "No DJs available"
+}
